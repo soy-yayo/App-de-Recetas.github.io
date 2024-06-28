@@ -1,19 +1,29 @@
-function menuPrincipal(){
-    console.log('Bienvenido a la cocina de la abuela\nPulse 1 para continuar: ');
+function menu() {
+    console.log('|------Menu------|\n1. Buscar Receta\n2. Agregar Receta\n3. Modificar Receta\n4. Eliminar Receta\n5. Salir\n|----------------|');
     op = parseInt(prompt('Ingrese una opcion: '));
     return op
 }
-
-function menu() {
-    console.log('|------Menu------|');
-    console.log('1. Buscar Receta');
-    console.log('2. Agregar Receta');
-    console.log('3. Modificar Receta');
-    console.log('4. Eliminar Receta');
-    console.log('5. Salir');
-    console.log('|----------------|');
-    op = parseInt(prompt('Ingrese una opcion: '));
-    return op  
+if (init == true) {
+    op = menu();
+    switch (op) {
+        case 1:
+            console.log('Buscar Receta');
+            break;
+        case 2:
+            console.log('Agregar Receta');
+            break;
+        case 3:
+            console.log('Modificar Receta');
+            break;
+        case 4:
+            console.log('Eliminar Receta');
+            break;
+        case 5:
+            console.log('Adios');
+            break;
+        default:
+            console.log('Opcion invalida');
+    }
+} else {
+    console.log('Adios');
 }
-
-
