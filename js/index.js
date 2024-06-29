@@ -6,12 +6,12 @@ let recetaPrueba1 = {
 let recetaPrueba2 = {
     nombre: 'Enchiladas',
     ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-    preparacion: 'Freir la tortilla, agregar el pollo, la salsa, queso y crema.'
+    preparacion: '1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
 }
 let recetaPrueba3 = {
     nombre: 'Pasta',
     ingredientes: ['Pasta', 'Salsa', 'Queso'],
-    preparacion: 'Hervir la pasta, agregar la salsa y el queso.'
+    preparacion: '1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
 }
 
 let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
@@ -19,7 +19,7 @@ let init = confirm('Bienvenido a la aplicacion de recetas, desea continuar?');
 let nombreReceta;
 
 function menu() {
-    console.log('|------Menu------|\n1. Buscar Receta\n2. Modificar Receta\n3. Eliminar Receta\n4. Salir\n|----------------|');
+    console.log('|------Menu------|\n1. Buscar Receta\n2. Modificar Receta\n3. Eliminar Receta\n4. Añadir Receta\n5. Salir\n|----------------|');
     op = parseInt(prompt('Ingrese una opcion: '));
     return op
 }
@@ -49,6 +49,19 @@ function modificarReceta(nombreReceta) {
     }
 }
 
+function añadirReceta() {
+    let nombre = prompt('Ingrese el nombre de la receta: ');
+    let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
+    let preparacion = prompt('Ingrese la preparacion de la receta: ');
+    let receta = {
+        nombre: nombre,
+        ingredientes: ingredientes.split(','),
+        preparacion: preparacion
+    }
+    recetas.push(receta);
+    console.log('Receta añadida correctamente');
+}
+
 function eliminarReceta(nombreReceta) {
     let receta = recetas.find(receta => receta.nombre == nombreReceta);
     if (receta) {
@@ -76,6 +89,9 @@ while (init) {
             eliminarReceta(nombreReceta);
             break;
         case 4:
+            añadirReceta();
+            break;
+        case 5:
             init = false;
             break;
         default:
