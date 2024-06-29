@@ -1,17 +1,17 @@
 let recetaPrueba1 = {
     nombre: 'Tacos',
     ingredientes: ['Tortilla', 'Carne', 'Salsa'],
-    preparacion: '1.Cocinar la carne\n2.Calentar la tortilla\n 3.Agregar la carne a la tortilla\n4.Agregar salsa al gusto'
+    preparacion: '\n1.Cocinar la carne\n2.Calentar la tortilla\n3.Agregar la carne a la tortilla\n4.Agregar salsa al gusto'
 }
 let recetaPrueba2 = {
     nombre: 'Enchiladas',
     ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-    preparacion: '1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
+    preparacion: '\n1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
 }
 let recetaPrueba3 = {
     nombre: 'Pasta',
     ingredientes: ['Pasta', 'Salsa', 'Queso'],
-    preparacion: '1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
+    preparacion: '\n1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
 }
 
 let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
