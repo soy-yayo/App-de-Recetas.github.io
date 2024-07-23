@@ -4,15 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
-    <script src="js/index.js"></script>
+    <script src="index.js"></script>
     <title>App de recetas de cocina</title>
 </head>
 
-<body>
+<body class="font-urbanist">
     <header class="w-full h-24 flex justify-between items-center">
-         <img class="w-60 max-h-20 ml-2" src="./public/logo.png" alt="logo-header">
-        <nav class="w-1/2">
+        <div class="w-60 max-h-20 ml-2">
+        <img src="./public/logo.png" alt="logo-header">
+        </div>
+            <nav class="w-1/2">
             <ul class="flex justify-around text-xl font-bold">
                 <a href="#"><li>Home</li></a>
                 <a href="#"><li>Blog</li></a>
@@ -21,6 +26,10 @@
                 <a href="#"><li>Contactanos</li></a>
             </ul>
         </nav>
+        <div class="mr-4">
+            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Iniciar sesión</button>
+            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Registrarse</button>
+        </div>
     </header>
 </body>
 </html>

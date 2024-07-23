@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'body': ['"Fira Code"'],
+      urbanist: ["Urbanist", "sans-serif"],
     },
   },
   plugins: [],
