@@ -11,28 +11,34 @@ class Receta {
   let recetaPrueba3 = new Receta("Pasta", ['Pasta', 'Salsa', 'Queso'], ['Hervir la pasta', 'Agregar la salsa y el queso derretido.']);
   
   
+  
 recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
+const container = document.getElementById('recetas-container');
    
 const btn = document.getElementById('addReceta');
-btn.addEventListener('click', añadirReceta);
+document.getElementById('recipe-form').addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    const nombre = document.getElementById('recipe-name').value;
+    const ingredientes = document.getElementById('recipe-ingredients').value.split(',');
+    const preparacion = document.getElementById('recipe-preparation').value.split(',');
+
+    agregarReceta(nombre, ingredientes, preparacion);
+    renderRecetas(recetas);
+
+    // Clear the form fields
+    document.getElementById('recipe-form').reset();
+});
+
+function agregarReceta(nombre, ingredientes, preparacion) {
+    recetas.push({ nombre, ingredientes, preparacion });
+    localStorage.setItem('recetas', JSON.stringify(recetas));
+    console.log('Receta agregada correctamente');
+}
 
 let storageRecetas = localStorage.getItem('recetas');
 if (storageRecetas) {
     recetas = JSON.parse(storageRecetas);
-}
-const container = document.getElementById('recetas-container');
-
-function añadirReceta() {
-    let nombre = prompt('Ingrese el nombre de la receta: ');
-    let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
-    let preparacion = prompt('Ingrese la preparacion de la receta: (Separe los pasos por coma)');
-
-    let receta = new Receta(nombre, ingredientes.split(','), preparacion.split(','));
-    
-    recetas.push(receta);
-    localStorage.setItem('recetas', JSON.stringify(recetas));
-    renderRecetas(recetas);
-
 }
 
 function renderRecetas(recetas) {
