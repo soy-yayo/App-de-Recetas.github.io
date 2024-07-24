@@ -1,34 +1,33 @@
-
-let recetaPrueba1 = {
-    nombre: 'Tacos',
-    ingredientes: ['Tortilla', 'Carne', 'Salsa'],
-    preparacion: ['Cocinar la carne', 'Calentar la tortilla', 'Agregar la carne a la tortilla', 'Agregar salsa al gusto'],
-}
-let recetaPrueba2 = {
-    nombre: 'Enchiladas',
-    ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-    preparacion: ['Freir la tortilla', 'Agregar el pollo, la salsa' , 'Preparar con queso y crema al gusto']
-}
-let recetaPrueba3 = {
-    nombre: 'Pasta',
-    ingredientes: ['Pasta', 'Salsa', 'Queso'],
-    preparacion: ['Hervir la pasta', 'Agregar la salsa y el queso derretido.']
-}
-
-let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
+class Receta {
+    constructor(nombre, ingredientes, preparacion) {
+      this.nombre = nombre;
+      this.ingredientes = ingredientes;
+      this.preparacion = preparacion;
+    }
+  }
+  
+  
+  let recetaPrueba1 = new Receta("Tacos", ['Tortilla', 'Carne', 'Salsa'], ['Cocinar la carne', 'Calentar la tortilla', 'Agregar la carne a la tortilla', 'Agregar salsa al gusto']);
+  let recetaPrueba2 = new Receta("Enchiladas", ['Tortilla', 'Pollo', 'Salsa'], ['Freir la tortilla', 'Agregar el pollo, la salsa', 'Preparar con queso y crema al gusto']);
+  let recetaPrueba3 = new Receta("Pasta", ['Pasta', 'Salsa', 'Queso'], ['Hervir la pasta', 'Agregar la salsa y el queso derretido.']);
+  
+  
+recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
+  
+  
+  
 
 function añadirReceta() {
     let nombre = prompt('Ingrese el nombre de la receta: ');
     let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
     let preparacion = prompt('Ingrese la preparacion de la receta: (Separe los pasos por coma)');
-    let receta = {
-        nombre: nombre,
-        ingredientes: ingredientes.split(',').map(ingrediente => ingrediente.trim()),
-        preparacion: preparacion.split(',').map(paso => paso.trim())
-    };
+
+    let receta = new Receta(nombre, ingredientes.split(','), preparacion.split(','));
+    
     recetas.push(receta);
     localStorage.setItem('recetas', JSON.stringify(recetas));
     renderRecetas(recetas);
+
 }
 
 const btn = document.getElementById('addReceta');
@@ -65,7 +64,9 @@ function filtrarRecetas(termino) {
     );
 }
 const formRecetas = document.getElementById('search-form');
+
 formRecetas.addEventListener('submit', (event) => {
+    event.preventDefault();
     const termino = document.getElementById('search-input').value;
     const recetasFiltradas = filtrarRecetas(termino);
     if (recetasFiltradas.length === 0) {
