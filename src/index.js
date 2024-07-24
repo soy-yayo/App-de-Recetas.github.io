@@ -19,6 +19,7 @@ let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
 
 function renderRecetas(recetas) {
     const container = document.getElementById('recetas-container');
+    container.innerHTML = '';
     recetas.forEach(receta => {
         const card = document.createElement("div");
         card.className = 'bg-white p-4 rounded-lg shadow-md p-2 border-2 border-[#007542]';
