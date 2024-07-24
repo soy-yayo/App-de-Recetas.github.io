@@ -1,17 +1,18 @@
+
 let recetaPrueba1 = {
     nombre: 'Tacos',
     ingredientes: ['Tortilla', 'Carne', 'Salsa'],
-    preparacion: '\nCocinar la carne\nCalentar la tortilla\nAgregar la carne a la tortilla\nAgregar salsa al gusto'
+    preparacion: ['Cocinar la carne', 'Calentar la tortilla', 'Agregar la carne a la tortilla', 'Agregar salsa al gusto'],
 }
 let recetaPrueba2 = {
     nombre: 'Enchiladas',
     ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-    preparacion: '\nFreir la tortilla\nAgregar el pollo, la salsa\nPreparar con queso y crema al gusto.'
+    preparacion: ['Freir la tortilla', 'Agregar el pollo, la salsa' , 'Preparar con queso y crema al gusto']
 }
 let recetaPrueba3 = {
     nombre: 'Pasta',
     ingredientes: ['Pasta', 'Salsa', 'Queso'],
-    preparacion: '\nHervir la pasta\nAgregar la salsa y el queso derretido.'
+    preparacion: ['Hervir la pasta', 'Agregar la salsa y el queso derretido.']
 }
 
 let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
@@ -19,31 +20,39 @@ let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
 function añadirReceta() {
     let nombre = prompt('Ingrese el nombre de la receta: ');
     let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
-    let preparacion = prompt('Ingrese la preparacion de la receta: ');
+    let preparacion = prompt('Ingrese la preparacion de la receta: (Separe los pasos por coma)');
     let receta = {
         nombre: nombre,
-        ingredientes: ingredientes.split(','),
-        preparacion: preparacion
-    }
+        ingredientes: ingredientes.split(',').map(ingrediente => ingrediente.trim()),
+        preparacion: preparacion.split(',').map(paso => paso.trim())
+    };
     recetas.push(receta);
-    console.log('Receta añadida correctamente');
+    localStorage.setItem('recetas', JSON.stringify(recetas));
+    renderRecetas(recetas);
 }
 
 const btn = document.getElementById('addReceta');
 btn.addEventListener('click', añadirReceta);
 
+let storageRecetas = localStorage.getItem('recetas');
+if (storageRecetas) {
+    recetas = JSON.parse(storageRecetas);
+}
+const container = document.getElementById('recetas-container');
+
 function renderRecetas(recetas) {
-    const container = document.getElementById('recetas-container');
     container.innerHTML = '';
     recetas.forEach(receta => {
         const card = document.createElement("div");
         card.className = 'bg-white p-4 rounded-lg shadow-md p-2 border-2 border-[#007542]';
         card.innerHTML = `
             <h3 class="text-xl font-bold mb-2">${receta.nombre}</h3>
-            <ul class="mb-2">
+            <ul class="mb-2 list-disc">
                 ${receta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
             </ul>
-            <p>${receta.preparacion.replace(/\n/g, '<br>')}</p>
+            <ol class="list-decimal">
+            ${receta.preparacion.map(paso => `<li>${paso}</li>`).join('')}
+            </ol>    
         `;
         container.appendChild(card);
     });
@@ -55,8 +64,8 @@ function filtrarRecetas(termino) {
         receta.ingredientes.some(ingrediente => ingrediente.toLowerCase().includes(termino.toLowerCase()))
     );
 }
-
-document.getElementById('search-form').addEventListener('submit', (event) => {
+const formRecetas = document.getElementById('search-form');
+formRecetas.addEventListener('submit', (event) => {
     const termino = document.getElementById('search-input').value;
     const recetasFiltradas = filtrarRecetas(termino);
     if (recetasFiltradas.length === 0) {
@@ -68,15 +77,6 @@ document.getElementById('search-form').addEventListener('submit', (event) => {
 
 renderRecetas(recetas);
 
-
-// function buscarReceta(nombreReceta) {
-//     let receta = recetas.find(receta => receta.nombre == nombreReceta);
-//     if (receta) {
-//         console.log('Nombre: ' + receta.nombre + '\nIngredientes: ' + receta.ingredientes + '\nPreparacion: ' + receta.preparacion);
-//     } else {
-//         console.log('Receta no encontrada');
-//     }
-// }
 
 // function modificarReceta(nombreReceta) {
 //     let receta = recetas.find(receta => receta.nombre == nombreReceta);
@@ -94,15 +94,20 @@ renderRecetas(recetas);
 //     }
 // }
 
+const btnDelete = document.getElementById('deleteReceta');
+btnDelete.addEventListener('click', (event) => {
+    const nombreReceta = prompt('Ingrese el nombre de la receta que desea eliminar: ');
+    eliminarReceta(nombreReceta);
+    renderRecetas(recetas);
+});
 
-
-// function eliminarReceta(nombreReceta) {
-//     let receta = recetas.find(receta => receta.nombre == nombreReceta);
-//     if (receta) {
-//         let index = recetas.indexOf(receta);
-//         recetas.splice(index, 1);
-//         console.log('Receta eliminada correctamente');
-//     } else {
-//         console.log('Receta no encontrada');
-//     }
-// }
+function eliminarReceta(nombreReceta) {
+    let receta = recetas.find(receta => receta.nombre == nombreReceta);
+    if (receta) {
+        let index = recetas.indexOf(receta);
+        recetas.splice(index, 1);
+        console.log('Receta eliminada correctamente');
+    } else {
+        console.log('Receta no encontrada');
+    }
+}
