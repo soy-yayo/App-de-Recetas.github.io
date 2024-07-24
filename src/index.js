@@ -34,16 +34,21 @@ function renderRecetas(recetas) {
     });
 }
 
+function filtrarRecetas(termino) {
+    return recetas.filter(receta => 
+        receta.nombre.toLowerCase().includes(termino.toLowerCase()) ||
+        receta.ingredientes.some(ingrediente => ingrediente.toLowerCase().includes(termino.toLowerCase()))
+    );
+}
+
+document.getElementById('search-form').addEventListener('submit', function(e) {
+    const termino = document.getElementById('search-input').value;
+    const recetasFiltradas = filtrarRecetas(termino);
+    renderRecetas(recetasFiltradas);
+});
+
 renderRecetas(recetas);
 
-// let init = confirm('Bienvenido a la aplicacion de recetas, desea continuar?');
-let nombreReceta;
-
-// function menu() {
-//     console.log('|------Menu------|\n1. Buscar Receta\n2. Modificar Receta\n3. Eliminar Receta\n4. Añadir Receta\n5. Salir\n|----------------|');
-//     op = parseInt(prompt('Ingrese una opcion: '));
-//     return op
-// }
 
 // function buscarReceta(nombreReceta) {
 //     let receta = recetas.find(receta => receta.nombre == nombreReceta);
