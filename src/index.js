@@ -1,22 +1,42 @@
-// let recetaPrueba1 = {
-//     nombre: 'Tacos',
-//     ingredientes: ['Tortilla', 'Carne', 'Salsa'],
-//     preparacion: '\n1.Cocinar la carne\n2.Calentar la tortilla\n3.Agregar la carne a la tortilla\n4.Agregar salsa al gusto'
-// }
-// let recetaPrueba2 = {
-//     nombre: 'Enchiladas',
-//     ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-//     preparacion: '\n1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
-// }
-// let recetaPrueba3 = {
-//     nombre: 'Pasta',
-//     ingredientes: ['Pasta', 'Salsa', 'Queso'],
-//     preparacion: '\n1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
-// }
+let recetaPrueba1 = {
+    nombre: 'Tacos',
+    ingredientes: ['Tortilla', 'Carne', 'Salsa'],
+    preparacion: '\n1.Cocinar la carne\n2.Calentar la tortilla\n3.Agregar la carne a la tortilla\n4.Agregar salsa al gusto'
+}
+let recetaPrueba2 = {
+    nombre: 'Enchiladas',
+    ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
+    preparacion: '\n1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
+}
+let recetaPrueba3 = {
+    nombre: 'Pasta',
+    ingredientes: ['Pasta', 'Salsa', 'Queso'],
+    preparacion: '\n1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
+}
 
-// let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
+let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
+
+
+function renderRecetas(recetas) {
+    const container = document.getElementById('recetas-container');
+    recetas.forEach(receta => {
+        const card = document.createElement("div");
+        card.className = 'bg-white p-4 rounded-lg shadow-md p-2 border-2 border-[#007542]';
+        card.innerHTML = `
+            <h3 class="text-xl font-bold mb-2">${receta.nombre}</h3>
+            <ul class="mb-2">
+                ${receta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
+            </ul>
+            <p>${receta.preparacion.replace(/\n/g, '<br>')}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+renderRecetas(recetas);
+
 // let init = confirm('Bienvenido a la aplicacion de recetas, desea continuar?');
-// let nombreReceta;
+let nombreReceta;
 
 // function menu() {
 //     console.log('|------Menu------|\n1. Buscar Receta\n2. Modificar Receta\n3. Eliminar Receta\n4. Añadir Receta\n5. Salir\n|----------------|');
@@ -70,32 +90,5 @@
 //         console.log('Receta eliminada correctamente');
 //     } else {
 //         console.log('Receta no encontrada');
-//     }
-// }
-
-// while (init) {
-//     op = menu();
-//     switch (op) {
-//         case 1:
-//             nombreReceta = prompt('Ingrese el nombre de la receta: ');
-//             buscarReceta(nombreReceta);
-//             break;
-//         case 2:
-//             nombreReceta = prompt('Ingrese el nombre de la receta: ');
-//             modificarReceta(nombreReceta);
-//             break;
-//         case 3:
-//             nombreReceta = prompt('Ingrese el nombre de la receta: ');
-//             eliminarReceta(nombreReceta);
-//             break;
-//         case 4:
-//             añadirReceta();
-//             break;
-//         case 5:
-//             init = false;
-//             break;
-//         default:
-//             console.log('Opcion no valida');
-//             break;
 //     }
 // }

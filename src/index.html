@@ -6,30 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <script defer src="./index.js"></script>
     <title>App de recetas de cocina</title>
 </head>
 
 <body class="font-urbanist">
-    <header class="w-full h-24 flex justify-between items-center">
-        <div class="w-60 max-h-20 ml-2">
-        <img src="./public/logo.png" alt="logo-header">
-        </div>
-            <nav class="w-1/2">
+    <header class="w-full h-24 flex justify-between items-center bg-[#EEFEEE]">
+        <img class="w-64 max-h-20 ml-2" src="./public/logo.png" alt="logo-header">
+        <nav class="w-1/2 flex-grow basis-0.5">
             <ul class="flex justify-around text-xl font-bold">
-                <a href="#"><li>Home</li></a>
-                <a href="#"><li>Blog</li></a>
-                <a href="#"><li>Recetas</li></a>
-                <a href="#"><li>Nosotros</li></a>
-                <a href="#"><li>Contactanos</li></a>
+                <a class="p-2 border-b-2 rounded-lg border-[#007542] hover:bg-[#737373] hover:text-[#FEFEFE] hover:border-b-0 hover:border-t-2"
+                    href="#">
+                    <li>Home</li>
+                </a>
+                <a class="p-2 border-b-2 rounded-lg border-[#007542] hover:bg-[#737373] hover:text-[#FEFEFE] hover:border-b-0 hover:border-t-2"
+                    href="#">
+                    <li>Blog</li>
+                </a>
+                <a class="p-2 border-b-2 rounded-lg border-[#007542] hover:bg-[#737373] hover:text-[#FEFEFE] hover:border-b-0 hover:border-t-2"
+                    href="#recetas">
+                    <li>Recetas</li>
+                </a>
+                <a class="p-2 border-b-2 rounded-lg border-[#007542] hover:bg-[#737373] hover:text-[#FEFEFE] hover:border-b-0 hover:border-t-2"
+                    href="#">
+                    <li>Nosotros</li>
+                </a>
+                <a class="p-2 border-b-2 rounded-lg border-[#007542] hover:bg-[#737373] hover:text-[#FEFEFE] hover:border-b-0 hover:border-t-2"
+                    href="#">
+                    <li>Contactanos</li>
+                </a>
             </ul>
         </nav>
-        <div class="mr-4">
-            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Iniciar sesión</button>
-            <button class="bg-green-500 text-white font-bold py-2 px-4 rounded">Registrarse</button>
-        </div>
+        <!-- <div class="w-64 max-h-20">
+            <button class="bg-[#007542] text-[#FEFEFE] font-bold py-2 px-4 rounded">Iniciar sesión</button>
+            <button class="bg-[#007542] text-[#FEFEFE] font-bold py-2 px-4 rounded">Registrarse</button>
+        </div> -->
     </header>
+    <main>
+        <section class="w-full h-screen bg-[#007542] flex justify-center items-center">
+            <div class="w-full text-center">
+                <h1 class="text-[#FEFEFE] text-4xl font-bold mb-4">Bienvenidos a la app de recetas de cocina</h1>
+                <p class="text-[#FEFEFE] px-12">Soy Eduardo Martínez y quiero darte la bienvenida a nuestra app de
+                    recetas de cocina. Aquí encontrarás una extensa variedad de recetas para todos los gustos y niveles
+                    de habilidad en la cocina. Ya sea que estés buscando una receta rápida para una cena entre semana,
+                    un plato sofisticado para impresionar a tus invitados, o una opción saludable para mantener tu
+                    bienestar, nuestra app tiene algo para ti.
+                </p>
+            </div>
+        </section>
+        <section id="recetas" class="w-full h-96 bg-[#EEFEEE] flex flex-col justify-center items-center space-y-4 mt-4">
+            <h1 class="text-[#007542] text-4xl font-bold">Recetas de cocina</h1>
+            <form action="GET" class="flex space-x-2">
+                <input type="text" placeholder="Buscar receta" class="border-2 border-[#007542] rounded-lg p-2">
+                <button type="submit" class="bg-[#007542] text-[#FEFEFE] font-bold py-2 px-4 rounded">Buscar</button>
+            </form>
+            <div id="recetas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+                
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>
