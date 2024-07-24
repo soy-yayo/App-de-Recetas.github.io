@@ -687,6 +687,10 @@ video {
   max-width: 28rem;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
 .flex-grow-0 {
   flex-grow: 0;
 }

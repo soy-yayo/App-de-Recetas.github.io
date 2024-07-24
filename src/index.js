@@ -1,21 +1,36 @@
 let recetaPrueba1 = {
     nombre: 'Tacos',
     ingredientes: ['Tortilla', 'Carne', 'Salsa'],
-    preparacion: '\n1.Cocinar la carne\n2.Calentar la tortilla\n3.Agregar la carne a la tortilla\n4.Agregar salsa al gusto'
+    preparacion: '\nCocinar la carne\nCalentar la tortilla\nAgregar la carne a la tortilla\nAgregar salsa al gusto'
 }
 let recetaPrueba2 = {
     nombre: 'Enchiladas',
     ingredientes: ['Tortilla', 'Pollo', 'Salsa'],
-    preparacion: '\n1.Freir la tortilla\n2.Agregar el pollo, la salsa\n3.Preparar con queso y crema al gusto.'
+    preparacion: '\nFreir la tortilla\nAgregar el pollo, la salsa\nPreparar con queso y crema al gusto.'
 }
 let recetaPrueba3 = {
     nombre: 'Pasta',
     ingredientes: ['Pasta', 'Salsa', 'Queso'],
-    preparacion: '\n1.Hervir la pasta\n2.Agregar la salsa y el queso derretido.'
+    preparacion: '\nHervir la pasta\nAgregar la salsa y el queso derretido.'
 }
 
 let recetas = [recetaPrueba1, recetaPrueba2, recetaPrueba3];
 
+function añadirReceta() {
+    let nombre = prompt('Ingrese el nombre de la receta: ');
+    let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
+    let preparacion = prompt('Ingrese la preparacion de la receta: ');
+    let receta = {
+        nombre: nombre,
+        ingredientes: ingredientes.split(','),
+        preparacion: preparacion
+    }
+    recetas.push(receta);
+    console.log('Receta añadida correctamente');
+}
+
+const btn = document.getElementById('addReceta');
+btn.addEventListener('click', añadirReceta);
 
 function renderRecetas(recetas) {
     const container = document.getElementById('recetas-container');
@@ -41,10 +56,14 @@ function filtrarRecetas(termino) {
     );
 }
 
-document.getElementById('search-form').addEventListener('submit', function(e) {
+document.getElementById('search-form').addEventListener('submit', (event) => {
     const termino = document.getElementById('search-input').value;
     const recetasFiltradas = filtrarRecetas(termino);
-    renderRecetas(recetasFiltradas);
+    if (recetasFiltradas.length === 0) {
+        alert('No se encontraron recetas');
+    } else {
+        renderRecetas(recetasFiltradas);
+    }
 });
 
 renderRecetas(recetas);
@@ -75,18 +94,7 @@ renderRecetas(recetas);
 //     }
 // }
 
-// function añadirReceta() {
-//     let nombre = prompt('Ingrese el nombre de la receta: ');
-//     let ingredientes = prompt('Ingrese los ingredientes de la receta: (Separados por coma)');
-//     let preparacion = prompt('Ingrese la preparacion de la receta: ');
-//     let receta = {
-//         nombre: nombre,
-//         ingredientes: ingredientes.split(','),
-//         preparacion: preparacion
-//     }
-//     recetas.push(receta);
-//     console.log('Receta añadida correctamente');
-// }
+
 
 // function eliminarReceta(nombreReceta) {
 //     let receta = recetas.find(receta => receta.nombre == nombreReceta);
