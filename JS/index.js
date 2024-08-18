@@ -1,12 +1,67 @@
-import { Receta } from "./Receta";
+import { Receta } from './Receta.js';
+//Crear contenedor de recetas
+const recetasContainer = document.getElementById('recetas-container');
 
-const recetas = [];
+// Fetch de las recetas
+fetch('./DB/DBRecetas.json')
+    .then(response => response.json())
+    .then(recetas => {
+        recetas.forEach(receta => {
+            const recetaItem = new Receta(receta.nombre, receta.ingredientes, receta.preparacion);
 
-const receta_1 = new Receta("Tacos", ['Tortilla', 'Carne', 'Salsa'], ['Cocinar la carne', 'Calentar la tortilla', 'Agregar la carne a la tortilla', 'Agregar salsa al gusto']);
+            // Crear la tarjeta
+            const card = document.createElement('div');
+            card.className = 'bg-white px-8 rounded-lg shadow-md border-2 border-[#007542]';
 
-recetas.push(receta_1);
+            // Crear el título de la receta
+            const titulo = document.createElement('h3');
+            titulo.className = 'text-xl font-semibold mb-2 text-center';
+            titulo.textContent = recetaItem.nombre;
+            card.appendChild(titulo);
 
-const container = document.getElementById('recetas-container');
+            // Crear la lista de ingredientes
+            const tituloIngredientes = document.createElement('h4');
+            tituloIngredientes.className = 'text-lg font-semibold mb-2';
+            tituloIngredientes.textContent = 'Ingredientes:';
+            card.appendChild(tituloIngredientes);
+
+            const ingredientesList = document.createElement('ul');
+            ingredientesList.className = 'mb-2 list-disc';
+
+            recetaItem.ingredientes.forEach(ingrediente => {
+                const ingredienteItem = document.createElement('li');
+                ingredienteItem.textContent = ingrediente;
+                ingredientesList.appendChild(ingredienteItem);
+            });
+            card.appendChild(ingredientesList);
+
+            // Crear la lista de pasos
+            const tituloPasos = document.createElement('h4');
+            tituloPasos.className = 'text-lg font-semibold mb-2';
+            tituloPasos.textContent = 'Preparación:';
+            card.appendChild(tituloPasos);
+
+            const pasosList = document.createElement('ol');
+            pasosList.className = 'list-decimal';
+
+            recetaItem.preparacion.forEach(paso => {
+                const pasoItem = document.createElement('li');
+                pasoItem.textContent = paso;
+                pasosList.appendChild(pasoItem);
+            });
+            card.appendChild(pasosList);
+
+            // Crear botón de eliminar
+            const botonEliminar = document.createElement('a');
+            botonEliminar.className = 'bg-red-500 text-white px-4 py-2 rounded-md mt-4';
+            botonEliminar.textContent = 'Eliminar';
+            card.appendChild(botonEliminar);
+
+
+            // Agregar la tarjeta al contenedor de recetas
+            recetasContainer.appendChild(card);
+        });
+    });
 
 const btn = document.getElementById('addReceta');
 const formAgregarReceta = document.getElementById('recipe-form');
@@ -31,24 +86,6 @@ function agregarReceta(nombre, ingredientes, preparacion) {
 let storageRecetas = localStorage.getItem('recetas');
 if (storageRecetas) {
     recetas = JSON.parse(storageRecetas);
-}
-
-function renderRecetas(recetas) {
-    container.innerHTML = '';
-    recetas.forEach(receta => {
-        const card = document.createElement("div");
-        card.className = 'bg-white px-8 rounded-lg shadow-md border-2 border-[#007542] ';
-        card.innerHTML = `
-            <h3 class="text-xl font-bold mb-2 text-center">${receta.nombre}</h3>
-            <ul class="mb-2 list-disc">
-            ${receta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
-            </ul>
-            <ol class="list-decimal">
-            ${receta.preparacion.map(paso => `<li>${paso}</li>`).join('')}
-            </ol>  
-            `;
-        container.appendChild(card);
-    });
 }
 
 const formRecetas = document.getElementById('search-form');
@@ -87,5 +124,3 @@ function eliminarReceta(nombreReceta) {
         localStorage.setItem('recetas', JSON.stringify(recetas));
     }
 }
-
-renderRecetas(recetas); 
