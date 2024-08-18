@@ -6,40 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com">
+        tailwind.config = {
+            theme: {
+                extend: {},
+                fontFamily: {
+                urbanist: ["Urbanist", "sans-serif"],
+                },
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link href="./CSS/output.css" rel="stylesheet">
-    <script defer src="./JS/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./JS/index.js"></script>
     <title>App de recetas de cocina</title>
 </head>
 
 <body class="font-urbanist">
-    <header class="w-full h-60
-     flex-row bg-[#EEFEEE] pt-4 px-4 md:px-8">
-        <img class="w-40 md:w-80 max-h-24 mx-auto" src="./public/logo.png" alt="logo-header">
-        <nav class="w-full h-1/2">
-            <ul class="h-full my-auto flex justify-center space-x-32 items-center text-sm md:text-xl font-bold">
+    <header class="sticky top-0 bg-[#fffcfc] p-4">
+        <nav class="container mx-auto p-4">
+            <ul class="flex justify-around">
                 <li>
-                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">Home</a>
+                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">
+                        Home
+                    </a>
                 </li>
                 <li>
-                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">Blog</a>
+                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">
+                        Blog
+                    </a>
                 </li>
                 <li>
-                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#recetas">Recetas</a>
+                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#recetas">
+                        Recetas
+                    </a>
                 </li>
                 <li>
-                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">Nosotros</a>
+                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">
+                        Nosotros
+                    </a>
                 </li>
                 <li>
-                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">Contactanos</a>
+                    <a class="p-2 rounded hover:bg-[#737373] hover:text-[#FEFEFE]" href="#">
+                        Contactanos
+                    </a>
                 </li>
             </ul>
         </nav>
-        <!-- <div class="hidden md:flex space-x-4">
-            <button class="bg-[#007542] text-[#FEFEFE] font-bold py-2 px-4 rounded">Iniciar sesión</button>
-            <button class="bg-[#007542] text-[#FEFEFE] font-bold py-2 px-4 rounded">Registrarse</button>
-        </div> -->
     </header>
     <main>
         <section class="w-full h-screen bg-[#007542] flex justify-center items-center">
@@ -59,72 +73,15 @@
             class="w-full bg-[#EEFEEE] flex flex-col justify-center items-center space-y-4 pt-4 pb-4  px-4">
             <h1 class="text-[#007542] text-2xl md:text-4xl font-bold">Recetas de cocina</h1>
             <form id="search-form"
-                class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 w-full max-w-md">
+                class="flex space-y-2 md:space-y-0 md:space-x-2 w-full max-w-md">
                 <input type="text" id="search-input" placeholder="Buscar receta"
                     class="border-2 border-[#007542] rounded-lg p-2 flex-grow">
-            </form>
+                </form>
+                <button type="submit" class="bg-[#007542] text-[#FEFEFE] rounded-lg p-2" id="agregar-receta">Agregar Receta</button>
             <div id="recetas-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-6xl">
                 <!-- Aquí se insertarán las recetas -->
             </div>
         </section>
-        <section class="w-full bg-[#EEFEEE] flex flex-col justify-center items-center space-y-4 pt-4 pb-4  px-4">
-            <div class="w-full flex justify-center ">
-
-                <form id="recipe-form" class="w-full max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
-                    <div class="flex flex-col">
-                        <label class="text-[#007542] text-xl md:text-2xl font-bold">Agregar Receta</label>
-                        <label for="recipe-name" class="mb-2 text-gray-700 font-semibold">Nombre de la receta:</label>
-                        <input type="text" id="recipe-name" name="recipe-name"
-                            class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#007542]"
-                            required>
-                    </div>
-                    <div class="flex flex-col">
-                        <label for="recipe-ingredients" class="mb-2 text-gray-700 font-semibold">Ingredientes:</label>
-                        <input type="text" id="recipe-ingredients" name="recipe-ingredients"
-                            class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#007542]"
-                            required>
-                    </div>
-                    <div class="flex flex-col">
-                        <label for="recipe-preparation" class="mb-2 text-gray-700 font-semibold">Preparación:</label>
-                        <input type="text" id="recipe-preparation" name="recipe-preparation"
-                            class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#007542]"
-                            required>
-                    </div>
-                    <button type="submit" class="w-full py-2 px-4 bg-[#007542] text-white font-semibold rounded">Agregar
-                        receta</button>
-                </form>
-
-                <form id="recipe-form-dl" class="w-full max-w-lg mx-auto p-6 bg-white rounded-lg space-y-4">
-                    <div class="flex flex-col">
-                        <label class="text-[#007542] text-xl md:text-2xl font-bold">Eliminar Receta</label>
-                        <label for="recipe-form-dl" class="mb-2 text-gray-700 font-semibold">Nombre de la
-                            receta:</label>
-                        <input type="text" id="recipe-name-dl" name="recipe-form-dl"
-                            class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#007542]"
-                            required>
-                    </div>
-                    <button type="submit"
-                        class="w-full py-2 px-4 bg-[#007542] text-white font-semibold rounded">Eliminar receta</button>
-                </form>
-            </div>
-        </section>
-        <!-- <div id="info-popup-recetas" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-            <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
-                    <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                        <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">Receta Agregada</h3>
-                        <p>
-                            La receta ha sido agregada correctamente a la lista de recetas.
-                        </p>
-                    </div>
-                    <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-                        <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
-                            <button id="confirm-button" type="button" class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-auto hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div> -->
     </main>
     <footer class="w-full border-t pb-4 border-t-[#007542] text-center mx-auto">
         <div class="w-full max-w-80 mx-auto">
