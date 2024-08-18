@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nombre": "Tarta de manzana",
+        "ingredientes": ["manzana", "azúcar", "harina", "mantequilla", "huevo"],
+        "preparacion": ["Mezclar los ingredientes", " hornear"]
+    },
+    {
+        "id": 2,
+        "nombre": "Tarta de queso",
+        "ingredientes": ["queso", "azúcar", "harina", "mantequilla", "huevo"],
+        "preparacion": ["Mezclar los ingredientes", " hornear"]
+    },
+    {
+        "id": 3,
+        "nombre": "Tarta de chocolate",
+        "ingredientes": ["chocolate", "azúcar", "harina", "mantequilla", "huevo"],
+        "preparacion": ["Mezclar los ingredientes", " hornear"]
+    }
+]
