@@ -1,7 +1,7 @@
 # App-de-Recetas
 
 Bienvenido a **App-de-Recetas**, una aplicación web interactiva para gestionar recetas de cocina. Este proyecto forma parte del curso de JavaScript Flex en CoderHouse y está diseñado para ofrecer a los usuarios una experiencia sencilla y atractiva para buscar, ver, añadir, editar y eliminar recetas.
-[¡Visitar!](soy-yayo.github.io)
+[¡Visitar!](https://soy-yayo.github.io/)
 
 ## Funcionalidades Principales
 
