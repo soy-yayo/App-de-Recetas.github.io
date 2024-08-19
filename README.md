@@ -34,7 +34,6 @@ Para utilizar la **App-de-Recetas** en tu máquina local, sigue estos pasos:
    ```bash
    git clone https://github.com/tu-usuario/App-de-Recetas.git
    cd App-de-Recetas
-   
 
 2. Abrir el proyecto en tu editor de código.
 3. Abrir el archivo index.html en tu navegador web preferido.
